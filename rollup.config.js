@@ -38,6 +38,7 @@ export default {
             namedExports: {
                 "node_modules/react/index.js": ["useState"],
                 "react/jsx-runtime": ["jsx", "jsxs"],
+                "node_modules/react-is/index.js": ['ForwardRef', "Memo", "isFragment"]
             }
         }),
         terser({
