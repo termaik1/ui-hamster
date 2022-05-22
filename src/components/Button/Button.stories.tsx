@@ -1,16 +1,15 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import Button from "./index";
-import { EButtonSize, EButtonTheme } from './models';
 
 export default {
-  title: "Button",
+  title: "components/Button",
   component: Button,
 } as ComponentMeta<typeof Button>
 
-export const Template: ComponentStory<typeof Button> = (args) => <Button {...args}>Button</Button>;
+export const ButtonGrey: ComponentStory<typeof Button> = (args) => <Button {...args}>Button</Button>;
 
-Template.args = {
-  size: EButtonSize.LARGE,
-  theme: EButtonTheme.GREY
+ButtonGrey.args = {
+  size: 'large',
+  theme: 'grey'
 }

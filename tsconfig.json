@@ -24,7 +24,6 @@
     "jsx": "react-jsx",
     "paths": {
       "@/*": ["src/*"],
-      "types": ["src/models/types.ts"],
       "app/*": ["./"]
     }
   },

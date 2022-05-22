@@ -1,24 +1,30 @@
-import styled from "styled-components";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import createStyles from "@material-ui/core/styles/createStyles";
+import { Theme } from "@material-ui/core/styles/createTheme";
 
-import { TButtonStyles, EButtonSize, EButtonTheme } from "./models";
-import themeUI from "@/configs/theme";
+import { TButtonStyles } from "./models";
+import { getSizeValue } from "@/utils/get.size.value.util";
 
-const ButtonWrapper = styled.button<TButtonStyles>`
-  border-radius: 10px;
-  cursor: pointer;
-  border: 2px solid ${themeUI.colors.black};
-  color: ${themeUI.colors.black};
+import configTheme from "@/configs/theme";
 
-  ${({ size }) => size === EButtonSize.LARGE && `padding: 12px 20px`};
-  ${({ size }) => size === EButtonSize.MEDUIM && `padding: 8px 16px`};
-  ${({ size }) => size === EButtonSize.SMALL && `padding: 4px 8px`};
+const { colors } = configTheme;
 
-  ${({ theme }) =>
-    theme === EButtonTheme.GREY && `background: ${themeUI.colors.grey}`};
-  ${({ theme }) =>
-    theme === EButtonTheme.WHITE && `background: ${themeUI.colors.white}`};
-  ${({ theme }) =>
-    theme === EButtonTheme.YELLOW && `background: ${themeUI.colors.yellow}`};
-`;
+export default makeStyles<Theme, TButtonStyles>((theme) =>
+  createStyles({
+    root: {
+      height: ({ size }) => getSizeValue(size, [40, 34, 24]),
+      paddingLeft: ({ size }) => getSizeValue(size, [24, 16, 12]),
+      paddingRight: ({ size }) => getSizeValue(size, [24, 16, 12]),
+      borderRadius: 10,
 
-export { ButtonWrapper };
+      background: ({ theme }) =>
+        theme === "grey"
+          ? colors.grey
+          : theme === "yellow"
+          ? colors.yellow
+          : colors.white,
+      border: ({ theme }) =>
+        theme === "white" ? `1px solid ${colors.black}` : 0,
+    },
+  })
+);

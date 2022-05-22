@@ -1,21 +1,16 @@
-export const enum EButtonSize {
-  LARGE = "LARGE",
-  MEDUIM = "MEDUIM",
-  SMALL = "SMALL",
-}
+import { DEFAULT_SIZE, DEFAULT_THEME } from "@/configs/constants";
+import { ButtonBaseProps } from "@material-ui/core/ButtonBase";
 
-export const enum EButtonTheme {
-  GREY = 'GREY',
-  YELLOW = 'YELLOW',
-  WHITE = 'WHITE',
-}
+export type TButtonTheme = keyof Pick<
+  typeof DEFAULT_THEME,
+  "grey" | "yellow" | "white"
+>;
 
 export type TButtonStyles = {
-  size?: EButtonSize;
-  theme?: EButtonTheme
+  size: keyof typeof DEFAULT_SIZE;
+  theme: TButtonTheme;
 };
 
-export interface IButtonProps extends TButtonStyles {
+export interface IButtonProps extends Partial<TButtonStyles>, ButtonBaseProps {
   children: React.ReactNode;
-  onClick?: () => void;
 }
